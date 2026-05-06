@@ -1,0 +1,635 @@
+:root {
+  --black: #050508;
+  --dark: #0d0d14;
+  --card: #111118;
+  --border: rgba(255, 255, 255, 0.06);
+  --neon: #00f5a0;
+  --neon2: #00c8ff;
+  --purple: #7b4fff;
+  --white: #f0f0f8;
+  --muted: rgba(240, 240, 248, 0.45);
+}
+
+.orbit-root {
+  background: var(--black);
+  color: var(--white);
+  font-family: "Syne", sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.orbit-root *,
+.orbit-root *::before,
+.orbit-root *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+}
+
+.orbit-root:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 245, 160, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 160, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.orbit-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10rem 5rem 6rem;
+  position: relative;
+  z-index: 1;
+}
+.orbit-hero-bg-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.orbit-hero-bg-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  filter: grayscale(100%);
+}
+
+.orbit-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.2rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.orbit-nav-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.orbit-nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+.orbit-nav-links a {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.orbit-nav-links a:hover {
+  color: var(--neon);
+}
+.orbit-nav-cta {
+  background: transparent;
+  color: var(--neon);
+  border: 1px solid var(--neon);
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.3rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.orbit-nav-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--neon);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.orbit-nav-cta:hover {
+  color: var(--black);
+}
+.orbit-nav-cta:hover::before {
+  transform: scaleX(1);
+}
+.orbit-nav-cta span {
+  position: relative;
+  z-index: 1;
+}
+
+.orbit-hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+.orbit-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
+}
+.orbit-eyebrow-text {
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--neon);
+  font-family: "Space Mono", monospace;
+}
+
+.orbit-hero-title {
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+}
+.orbit-line2 {
+  display: block;
+  -webkit-text-stroke: 1px rgba(240, 240, 248, 0.4);
+  -webkit-text-fill-color: transparent;
+}
+.orbit-accent {
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.orbit-hero-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 580px;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+.orbit-hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.orbit-btn-neon {
+  background: var(--neon);
+  color: var(--black);
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 0.3rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  box-shadow: 0 0 40px rgba(0, 245, 160, 0.3);
+}
+.orbit-btn-neon:hover {
+  box-shadow: 0 0 60px rgba(0, 245, 160, 0.5);
+  transform: translateY(-2px);
+}
+.orbit-btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border);
+  padding: 1rem 2.5rem;
+  border-radius: 0.3rem;
+  font-family: "Syne", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.orbit-btn-outline:hover {
+  border-color: var(--neon);
+  color: var(--neon);
+}
+
+.orbit-metrics {
+  display: flex;
+  gap: 3rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+}
+.orbit-metric-val {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.orbit-metric-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-top: 0.3rem;
+}
+
+.orbit-marquee-wrap {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--dark);
+  padding: 1rem 0;
+  position: relative;
+  z-index: 1;
+}
+.orbit-marquee-track {
+  display: flex;
+  gap: 4rem;
+  animation: orbit-marquee 20s linear infinite;
+  width: max-content;
+}
+@keyframes orbit-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.orbit-marquee-item {
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.orbit-dot {
+  color: var(--neon);
+  margin: 0 1rem;
+}
+
+.orbit-services {
+  padding: 8rem 5rem;
+  position: relative;
+  z-index: 1;
+}
+.orbit-services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+.orbit-section-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--neon);
+  display: block;
+  margin-bottom: 1rem;
+}
+.orbit-section-h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.orbit-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  border: 1.5px solid var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.orbit-svc {
+  background: var(--card);
+  padding: 2.5rem 2rem;
+  border-right: 1.5px solid var(--border);
+  transition: background 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.orbit-svc:last-child {
+  border-right: none;
+}
+.orbit-svc::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+.orbit-svc:hover {
+  background: #15151f;
+}
+.orbit-svc:hover::after {
+  transform: scaleX(1);
+}
+.orbit-svc-num {
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--neon);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+.orbit-svc h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.orbit-svc p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.orbit-svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.orbit-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  color: var(--muted);
+}
+.orbit-svc-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--neon);
+}
+.orbit-svc-price small {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.orbit-process {
+  padding: 6rem 5rem;
+  background: var(--dark);
+  position: relative;
+  z-index: 1;
+}
+.orbit-process-list {
+  max-width: 800px;
+  margin: 4rem auto 0;
+}
+.orbit-process-item {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.orbit-process-item:last-child {
+  border-bottom: none;
+}
+.orbit-process-n {
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--neon);
+  letter-spacing: 0.1em;
+  padding-top: 0.3rem;
+}
+.orbit-process-item h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.orbit-process-item p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.orbit-results {
+  padding: 8rem 5rem;
+  position: relative;
+  z-index: 1;
+}
+.orbit-results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 4rem auto 0;
+}
+.orbit-result-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  transition: border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.orbit-card-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.orbit-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.07;
+  filter: grayscale(100%);
+  transition: opacity 0.4s;
+}
+.orbit-result-card:hover .orbit-card-img img {
+  opacity: 0.13;
+}
+.orbit-result-card > *:not(.orbit-card-img) {
+  position: relative;
+  z-index: 1;
+}
+.orbit-result-card:hover {
+  border-color: rgba(0, 245, 160, 0.3);
+}
+.orbit-result-card h3 {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.orbit-client {
+  font-size: 0.78rem;
+  color: var(--neon);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  font-family: "Space Mono", monospace;
+}
+.orbit-result-card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.orbit-cta-section {
+  padding: 8rem 5rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.orbit-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 245, 160, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.orbit-cta-section h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+.orbit-cta-section h2 span {
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.orbit-cta-section p {
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+.orbit-cta-input-row {
+  display: flex;
+  gap: 1rem;
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.orbit-cta-input {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+  padding: 1rem 1.5rem;
+  color: var(--white);
+  font-family: "Syne", sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.orbit-cta-input:focus {
+  border-color: var(--neon);
+}
+.orbit-cta-input::placeholder {
+  color: var(--muted);
+}
+
+.orbit-footer {
+  padding: 2.5rem 5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.orbit-footer-logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  background: linear-gradient(90deg, var(--neon), var(--neon2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.orbit-footer p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: "Space Mono", monospace;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.orbit-hero > * {
+  animation: fadeUp 0.7s ease forwards;
+  opacity: 0;
+}
+.orbit-hero > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.orbit-hero > *:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.orbit-hero > *:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.orbit-hero > *:nth-child(4) {
+  animation-delay: 0.7s;
+}
+.orbit-hero > *:nth-child(5) {
+  animation-delay: 0.9s;
+}
